@@ -1,0 +1,23 @@
+---
+- name: Install packages
+  community.general.pacman:
+    name:
+      - ansible-lint
+      - curl
+      - go
+      - nodejs
+      - npm
+      - python3
+      - python-pip
+      - yamllint
+      - zsh
+      # gnome-extra
+    state: present
+  become: yes
+
+# Install packages using yay
+# powerline-fonts
+# github-cli
+# vscode
+# discord
+# chrome-gnome-shell

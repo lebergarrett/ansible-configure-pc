@@ -1,0 +1,84 @@
+---
+- name: Clone down config files
+  ansible.builtin.git:
+    repo: 'https://github.com/lebergarrett/dotfiles.git'
+    dest: ~/repos/dotfiles
+    version: master
+
+- name: Ensure ssh dir exists
+  ansible.builtin.file:
+    path: ~/.ssh
+    state: directory
+    mode: 0755
+
+- name: Create .ssh/config symlink
+  ansible.builtin.file:
+    src: '~/repos/dotfiles/.ssh/config'
+    dest: ~/.ssh/config
+    state: link
+    force: yes
+
+- name: Create .vimrc symbolic link
+  ansible.builtin.file:
+    src: '~/repos/dotfiles/.vimrc'
+    dest: ~/.vimrc
+    state: link
+    force: yes
+
+- name: Create .vimrc.plug symbolic link
+  ansible.builtin.file:
+    src: '~/repos/dotfiles/.vimrc.plug'
+    dest: ~/.vimrc.plug
+    state: link
+    force: yes
+
+- name: Create .zpreztorc symbolic link
+  ansible.builtin.file:
+    src: '~/repos/dotfiles/.zpreztorc'
+    dest: ~/.zpreztorc
+    state: link
+    force: yes
+
+- name: Create .zshrc symbolic link
+  ansible.builtin.file:
+    src: '~/repos/dotfiles/.zshrc'
+    dest: ~/.zshrc
+    state: link
+    force: yes
+
+- name: Create yabairc symbolic link
+  ansible.builtin.file:
+    src: '~/repos/dotfiles/yabairc'
+    dest: ~/.yabairc
+    state: link
+    force: yes
+  when: ansible_os_family == 'Darwin'
+
+- name: Create skhdrc symbolic link # Used to configure shortcuts for yabai
+  ansible.builtin.file:
+    src: '~/repos/dotfiles/skhdrc'
+    dest: ~/.skhdrc
+    state: link
+    force: yes
+  when: ansible_os_family == 'Darwin'
+
+- name: Ensure config dir exists
+  ansible.builtin.file:
+    path: ~/.config
+    state: directory
+    mode: 0755
+
+- name: Ensure yabai config dir exists
+  ansible.builtin.file:
+    path: ~/.config/yabai
+    state: directory
+    mode: 0755
+  when: ansible_os_family == 'Darwin'
+
+- name: Create yabai scripts symbolic link
+  ansible.builtin.file:
+    src: '~/repos/dotfiles/scripts/'
+    dest: ~/.config/yabai/scripts/
+    state: link
+    force: yes
+  when: ansible_os_family == 'Darwin'

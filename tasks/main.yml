@@ -1,0 +1,34 @@
+---
+- include: standard-packages/main.yml
+- meta: flush_handlers
+
+- include: git-setup.yml
+- meta: flush_handlers
+
+- include: prezto.yml
+- meta: flush_handlers
+
+- include: dotfiles.yml
+- meta: flush_handlers
+
+- include: vimplug.yml
+- meta: flush_handlers
+
+- include: sudoers.yml
+- meta: flush_handlers
+
+- include: upgrade/main.yml
+- meta: flush_handlers
+
+- include: terraform/main.yml
+- meta: flush_handlers
+
+- include: kubectl/main.yml
+- meta: flush_handlers
+
+- include: githubcli/main.yml
+- meta: flush_handlers
+
+- include: gcloud-sdk/main.yml
+- meta: flush_handlers
+
