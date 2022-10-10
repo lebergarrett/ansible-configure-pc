@@ -1,34 +1,65 @@
 ---
-- include: standard-packages/main.yml
-- meta: flush_handlers
+#
+# Roles
+#
 
-- include: git-setup.yml
-- meta: flush_handlers
+- ansible.builtin.include_role: 
+    name: elliotweiser.osx-command-line-tools
+  when: ansible_os_family == 'Darwin'
+- ansible.builtin.meta: flush_handlers
 
-- include: prezto.yml
-- meta: flush_handlers
+- ansible.builtin.include_role: 
+    name: geerlingguy.mac.homebrew
+  when: ansible_os_family == 'Darwin'
+- ansible.builtin.meta: flush_handlers
 
-- include: dotfiles.yml
-- meta: flush_handlers
+- ansible.builtin.include_role: 
+    name: geerlingguy.docker
+  when: ansible_os_family != 'Darwin' and wsl == false
+- ansible.builtin.meta: flush_handlers
 
-- include: vimplug.yml
-- meta: flush_handlers
+- ansible.builtin.include_role: 
+    name: lebergarrett.ansible_nfs_client
+  when: sharedrive_location is defined
+- ansible.builtin.meta: flush_handlers
 
-- include: sudoers.yml
-- meta: flush_handlers
+- ansible.builtin.include_role: 
+    name: lebergarrett.ansible_awscli
+- ansible.builtin.meta: flush_handlers
 
-- include: upgrade/main.yml
-- meta: flush_handlers
+#
+# Tasks
+#
 
-- include: terraform/main.yml
-- meta: flush_handlers
+- ansible.builtin.include: standard-packages/main.yml
+- ansible.builtin.meta: flush_handlers
 
-- include: kubectl/main.yml
-- meta: flush_handlers
+- ansible.builtin.include: git-setup.yml
+- ansible.builtin.meta: flush_handlers
 
-- include: githubcli/main.yml
-- meta: flush_handlers
+- ansible.builtin.include: prezto.yml
+- ansible.builtin.meta: flush_handlers
 
-- include: gcloud-sdk/main.yml
-- meta: flush_handlers
+- ansible.builtin.include: dotfiles.yml
+- ansible.builtin.meta: flush_handlers
 
+- ansible.builtin.include: vimplug.yml
+- ansible.builtin.meta: flush_handlers
+
+- ansible.builtin.include: sudoers.yml
+- ansible.builtin.meta: flush_handlers
+
+- ansible.builtin.include: upgrade/main.yml
+- ansible.builtin.meta: flush_handlers
+
+- ansible.builtin.include: terraform/main.yml
+- ansible.builtin.meta: flush_handlers
+
+- ansible.builtin.include: kubectl/main.yml
+- ansible.builtin.meta: flush_handlers
+
+- ansible.builtin.include: githubcli/main.yml
+- ansible.builtin.meta: flush_handlers
+
+- ansible.builtin.include: gcloud-sdk/main.yml
+- ansible.builtin.meta: flush_handlers

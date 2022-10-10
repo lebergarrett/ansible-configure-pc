@@ -9,6 +9,14 @@ Collections:
 
 - community.general
 
+Roles:
+
+- elliotweiser.osx-command-line-tools
+- geerlingguy.mac.homebrew
+- geerlingguy.docker
+- lebergarrett.ansible_nfs_client
+- lebergarrett.ansible_awscli
+
 ## Role Variables
 --------------
 

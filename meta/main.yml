@@ -40,9 +40,4 @@ galaxy_info:
     # NOTE: A tag is limited to a single word comprised of alphanumeric characters.
     #       Maximum 20 tags per role.
 
-dependencies:
-  - { role: 'elliotweiser.osx-command-line-tools', when: ansible_os_family == 'Darwin' }
-  - { role: 'geerlingguy.mac.homebrew', when: ansible_os_family == 'Darwin' }
-  - { role: 'geerlingguy.docker', when: ansible_os_family != 'Darwin' and wsl == false }
-  - { role: lebergarrett.ansible_nfs_client, when: sharedrive_location is defined }
-  - { role: lebergarrett.ansible_awscli }
+dependencies: []
