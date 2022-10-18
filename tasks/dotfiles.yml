@@ -75,6 +75,13 @@
     mode: 0755
   when: ansible_os_family == 'Darwin'
 
+- name: Ensure yabai scripts dir exists
+  ansible.builtin.file:
+    path: ~/.config/yabai/scripts
+    state: directory
+    mode: 0755
+  when: ansible_os_family == 'Darwin'
+
 - name: Create yabai scripts symbolic link
   ansible.builtin.file:
     src: '~/repos/dotfiles/scripts/'
