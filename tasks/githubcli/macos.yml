@@ -1,5 +1,0 @@
----
-- community.general.homebrew:
-    name: gh
-    state: present
-    update_homebrew: yes

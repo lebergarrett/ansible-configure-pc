@@ -13,10 +13,11 @@
   when: ansible_os_family == 'Darwin'
 - ansible.builtin.meta: flush_handlers
 
-- ansible.builtin.include_role: 
-    name: geerlingguy.docker
-  when: ansible_os_family != 'Darwin' and wsl == false
-- ansible.builtin.meta: flush_handlers
+# TODO build my own docker role with become statements where needed
+#- ansible.builtin.include_role: 
+#    name: geerlingguy.docker
+#  when: ansible_os_family != 'Darwin' and wsl == false
+#- ansible.builtin.meta: flush_handlers
 
 - ansible.builtin.include_role: 
     name: lebergarrett.ansible_nfs_client
@@ -56,9 +57,6 @@
 - ansible.builtin.meta: flush_handlers
 
 - ansible.builtin.include: kubectl/main.yml
-- ansible.builtin.meta: flush_handlers
-
-- ansible.builtin.include: githubcli/main.yml
 - ansible.builtin.meta: flush_handlers
 
 - ansible.builtin.include: gcloud-sdk/main.yml
